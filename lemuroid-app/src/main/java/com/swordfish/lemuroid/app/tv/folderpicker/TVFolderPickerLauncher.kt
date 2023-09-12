@@ -27,11 +27,11 @@ class TVFolderPickerLauncher : ImmersiveActivity() {
             val preferenceKey = getString(R.string.pref_key_legacy_external_folder)
 
             val currentValue: String? = sharedPreferences.getString(preferenceKey, null)
-            val newValue = resultData?.extras?.getString(TVFolderPickerActivity.RESULT_DIRECTORY_PATH)
+            val newValue = resultData?.data?.path ?: "";
 
-            if (newValue.toString() != currentValue) {
+            if (newValue != currentValue) {
                 sharedPreferences.edit().apply {
-                    this.putString(preferenceKey, newValue.toString())
+                    this.putString(preferenceKey, newValue)
                     this.commit()
                 }
             }
@@ -46,7 +46,7 @@ class TVFolderPickerLauncher : ImmersiveActivity() {
     }
 
     companion object {
-        private const val REQUEST_CODE_PICK_FOLDER = 1
+        public const val REQUEST_CODE_PICK_FOLDER = 1
 
         fun pickFolder(context: Context) {
             context.startActivity(Intent(context, TVFolderPickerLauncher::class.java))
