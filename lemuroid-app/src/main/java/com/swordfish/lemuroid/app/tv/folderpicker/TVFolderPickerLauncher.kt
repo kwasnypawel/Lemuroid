@@ -27,7 +27,7 @@ class TVFolderPickerLauncher : ImmersiveActivity() {
             val preferenceKey = getString(R.string.pref_key_legacy_external_folder)
 
             val currentValue: String? = sharedPreferences.getString(preferenceKey, null)
-            val newValue = resultData?.data?.path ?: "";
+            val newValue = resultData?.data?.path ?: "" ;
 
             if (newValue != currentValue) {
                 sharedPreferences.edit().apply {
